@@ -19,9 +19,9 @@ class Product extends React.Component {
     // приймає обʼєкт, властивості якого доповнюють або перезаписують властивості стану
     this.setState({
       newPropertyInState: "test",
-      isFavourite: true
+      isFavourite: true,
     });
-  }
+  };
 
   render() {
     // зміна стану викличе повторне відмалювання
@@ -38,9 +38,14 @@ class Product extends React.Component {
         <p>Price: {price}</p>
         <p>{description}</p>
         {/* <p>{name} is {isFavourite ? '' : 'not'} favourite</p> */}
-        <p> {name} is {!isFavourite && "not"} favourite </p>
+        <p>
+          {" "}
+          {name} is {!isFavourite && "not"} favourite{" "}
+        </p>
         {/* {!isFavourite && <p>{name} is favourite</p>} */}
-        <button id="btn" onClick={this.clickHandler}>Make Favourite</button>
+        <button id="btn" onClick={this.clickHandler}>
+          Make Favourite
+        </button>
       </article>
     );
   }

@@ -3,6 +3,7 @@ import MyClassComponent from "./components/MyClassComponent";
 import MyFunctionalComponent from "./components/MyFunctionalComponent";
 import Greeting from "./components/Greeting/index.jsx";
 import Product from "./components/Product/index.jsx";
+import ProductList from "./components/ProductList/index.jsx";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
@@ -46,19 +47,20 @@ const elem2 = (
 // jsx fragment
 // const frag = <></>;
 
-const product1 = {
-  id: 0,
-  name: "Product 1",
-  price: 12345.99,
-  description: "Lorem Ipsum",
-};
-
-const product2 = {
-  id: 1,
-  name: "Product 2",
-  price: 123.32,
-  description: "Lorem Ipsum bla bla bla",
-};
+const products = [
+  {
+    id: 0,
+    name: "Product 1",
+    price: 12345.99,
+    description: "Lorem Ipsum",
+  },
+  {
+    id: 1,
+    name: "Product 2",
+    price: 123.32,
+    description: "Lorem Ipsum bla bla bla",
+  },
+];
 
 function App() {
   const shouldClassComponentsRender = Math.random() > 0.5;
@@ -81,13 +83,18 @@ function App() {
   // </>;
   // }
 
+  const productsComponents = products.map((product) => {
+    return <Product product={product} />;
+  });
+
   return (
     <>
       {/* <Greeting userFirstName="John" userLastName="Doe" />
       <Greeting userFirstName="Sarah" />
       <Greeting /> */}
-      <Product product={product1} />
-      <Product product={product2} />
+      <ProductList products={products}/>
+      {/* <Product product={products[0]} />
+      <Product product={products[1]} /> */}
       {/* {shouldClassComponentsRender ? (
         <MyClassComponent />
       ) : (
