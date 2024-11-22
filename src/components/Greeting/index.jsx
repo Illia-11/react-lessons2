@@ -1,4 +1,6 @@
 import React from "react";
+// імпорт стилів у vite
+import "./Greeting.css";
 
 // function Greeting(props) {
 //   // props - обʼєкт, який містить зовнішні налаштування для компонента
@@ -17,7 +19,6 @@ import React from "react";
 // }
 
 class Greeting extends React.Component {
-
   render() {
     console.log(this.props);
 
@@ -25,13 +26,13 @@ class Greeting extends React.Component {
 
     // Ніколи не треба змінювати в компоненті пропси, які він приймає
     // this.props.userFirstName = "Baddie";
-  
+
     const fullName = `${userFirstName} ${userLastName}`.trim();
-  
+
     return React.createElement(
       "p",
       { className: "greetingText" },
-      `Hello, ${fullName ? fullName : 'Guest'}.`
+      `Hello, ${fullName ? fullName : "Guest"}.`
     );
   }
 }
