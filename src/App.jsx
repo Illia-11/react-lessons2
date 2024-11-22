@@ -83,10 +83,6 @@ function App() {
   // </>;
   // }
 
-  const productsComponents = products.map((product) => {
-    return <Product product={product} />;
-  });
-
   return (
     <>
       {/* <Greeting userFirstName="John" userLastName="Doe" />
