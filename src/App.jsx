@@ -1,7 +1,8 @@
 import React from "react";
 import MyClassComponent from "./components/MyClassComponent";
-import MyFunctionalComponent from "./components/MyFunctionComponent";
-import Greeting from "./components/Greeting";
+import MyFunctionalComponent from "./components/MyFunctionalComponent";
+import Greeting from "./components/Greeting/index.jsx";
+import Product from "./components/Product/index.jsx";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
@@ -49,7 +50,7 @@ const product1 = {
   id: 0,
   name: "Product 1",
   price: 12345.99,
-  describtion: "Lorem Ipsum",
+  description: "Lorem Ipsum",
 };
 
 function App() {
@@ -75,11 +76,11 @@ function App() {
 
   return (
     <>
-      <Greeting userFirstName="John" userLastName="Doe" />
+      {/* <Greeting userFirstName="John" userLastName="Doe" />
       <Greeting userFirstName="Sarah" />
-      <Greeting />
+      <Greeting /> */}
       <Product product={product1} />
-      {shouldClassComponentsRender ? (
+      {/* {shouldClassComponentsRender ? (
         <MyClassComponent />
       ) : (
         <MyFunctionalComponent />
@@ -88,7 +89,7 @@ function App() {
         <MyClassComponent />
       ) : (
         <MyFunctionalComponent />
-      )}
+      )} */}
     </>
   );
 }
