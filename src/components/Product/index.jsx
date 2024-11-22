@@ -5,15 +5,27 @@ class Product extends React.Component {
     super(props);
 
     this.state = {
-      isFavourite: true,
+      isFavourite: false,
     };
   }
 
   clickHandler = () => {
-    alert('click!');
+    // alert('click!');
+
+    // мутація стану. Код не буде працювати
+    // this.state.isFavourite = true;
+
+    // функція зміни стану
+    // приймає обʼєкт, властивості якого доповнюють або перезаписують властивості стану
+    this.setState({
+      newPropertyInState: "test",
+      isFavourite: true
+    });
   }
 
   render() {
+    // зміна стану викличе повторне відмалювання
+    // зміна пропсів також змушує ререндеритися компонент
     const {
       product: { id, name, price, description },
     } = this.props;
