@@ -60,6 +60,18 @@ const products = [
     price: 123.32,
     description: "Lorem Ipsum bla bla bla",
   },
+  {
+    id: 2,
+    name: "Product 3",
+    price: 453,
+    description: "Lorem Ipsum bla bla bla",
+  },
+  {
+    id: 3,
+    name: "Product 4",
+    price: 9678,
+    description: "Lorem Ipsum bla bla bla",
+  },
 ];
 
 function App() {
