@@ -41,7 +41,17 @@ class MyClassComponent extends React.Component {
 
 // class MyClassComponent extends Component {}
 
+function MyFunctionalComponent() {
+  const heading = React.createElement('h2', {className: 'articleHeading'}, 'Functional Component heading');
+
+  const textPar = React.createElement('p', null, '12345');
+
+  const article = React.createElement('article', null, heading, textPar);
+
+  return article;
+}
+
 // Щоб намалювати компонент його закидуємо у createElement першим параметром
-const elem = React.createElement(MyClassComponent);
+const elem = React.createElement(MyFunctionalComponent);
 
 createRoot(document.getElementById('root')).render(elem);
