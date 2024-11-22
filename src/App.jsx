@@ -1,25 +1,25 @@
-import React from 'react';
-import MyClassComponent from './components/MyClassComponent';
-import MyFunctionalComponent from './components/MyFunctionComponent';
-import Greeting from './components/Greeting';
+import React from "react";
+import MyClassComponent from "./components/MyClassComponent";
+import MyFunctionalComponent from "./components/MyFunctionComponent";
+import Greeting from "./components/Greeting";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
-  'div',
-  { id: 'div', title: 'div', className: 'div' },
+  "div",
+  { id: "div", title: "div", className: "div" },
   React.createElement(
-    'h3',
-    { className: 'heading', disabled: true },
-    'Div title'
+    "h3",
+    { className: "heading", disabled: true },
+    "Div title"
   ),
-  React.createElement('p', { className: 'text' }, 'Div text')
+  React.createElement("p", { className: "text" }, "Div text")
 );
 
 // JSX версія елементу зверху
 const elem2 = (
-  <div id='div' title='div' className='div'>
-    <h3 className='heading'>Div title</h3>
-    <p className='text'>Div text</p>
+  <div id="div" title="div" className="div">
+    <h3 className="heading">Div title</h3>
+    <p className="text">Div text</p>
   </div>
 );
 
@@ -45,6 +45,13 @@ const elem2 = (
 // jsx fragment
 // const frag = <></>;
 
+const product1 = {
+  id: 0,
+  name: "Product 1",
+  price: 12345.99,
+  describtion: "Lorem Ipsum",
+};
+
 function App() {
   const shouldClassComponentsRender = Math.random() > 0.5;
 
@@ -68,11 +75,20 @@ function App() {
 
   return (
     <>
-      <Greeting userFirstName='John' userLastName='Doe' />
-      <Greeting userFirstName='Sarah' />
+      <Greeting userFirstName="John" userLastName="Doe" />
+      <Greeting userFirstName="Sarah" />
       <Greeting />
-      {shouldClassComponentsRender ? <MyClassComponent /> : <MyFunctionalComponent />}
-      {shouldClassComponentsRender ? <MyClassComponent /> : <MyFunctionalComponent />}
+      <Product product={product1} />
+      {shouldClassComponentsRender ? (
+        <MyClassComponent />
+      ) : (
+        <MyFunctionalComponent />
+      )}
+      {shouldClassComponentsRender ? (
+        <MyClassComponent />
+      ) : (
+        <MyFunctionalComponent />
+      )}
     </>
   );
 }
