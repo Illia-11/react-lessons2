@@ -1,8 +1,8 @@
-import React, { StrictMode, Component } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { StrictMode, Component } from "react";
+import { createRoot } from "react-dom/client";
 // import MyClassComponent from './components/MyClassComponent';
 // import MyFunctionalComponent from './components/MyFunctionalComponent';
-import App from './App';
+import App from "./App";
 
 /*
   Компоненти бувають двох видів:
@@ -24,4 +24,4 @@ import App from './App';
 
 const app = React.createElement(App);
 
-createRoot(document.getElementById('root')).render(app);
+createRoot(document.getElementById("root")).render(app);

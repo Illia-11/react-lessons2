@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 // Класовий компонент
 class MyClassComponent extends React.Component {
@@ -22,14 +21,14 @@ class MyClassComponent extends React.Component {
       Реакт буде кидати помилку, якщо змусити його відмалювати звичайний обʼєкт
     */
     const heading = React.createElement(
-      'h2',
-      {className: 'articleHeading'},
-      'Class Component heading'
+      "h2",
+      { className: "articleHeading" },
+      "Class Component heading"
     );
 
-    const textPar = React.createElement('p', null, 'Lorem Ipsum');
+    const textPar = React.createElement("p", null, "Lorem Ipsum");
 
-    const article = React.createElement('article', null, heading, textPar);
+    const article = React.createElement("article", null, heading, textPar);
 
     return article;
   }
