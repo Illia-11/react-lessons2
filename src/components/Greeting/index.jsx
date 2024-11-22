@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 // імпорт стилів у vite
-import "./Greeting.css";
+import './Greeting.css';
 
 // function Greeting(props) {
-//   // props - обʼєкт, який містить зовнішні налаштування для компонента
+//   // props - об'єкт, який містить зовнішні налаштування для компонента
 
-//   // console.log(props);
+//   console.log(props);
 
-//   const { userFirstName = "", userLastName = "" } = props;
+//   const { userFirstName = '', userLastName = '' } = props;
 
 //   const fullName = `${userFirstName} ${userLastName}`.trim();
 
 //   return React.createElement(
-//     "p",
-//     { className: "greetingText" },
-//     `Hello, ${fullName ? fullName : 'Guest'}.`
+//     'p',
+//     { className: 'greetingText' },
+//     `Hello, ${fullName ? fullName : 'Guest' }.`
 //   );
 // }
 
@@ -22,65 +22,72 @@ class Greeting extends React.Component {
   render() {
     console.log(this.props);
 
-    const { userFirstName = "", userLastName = "" } = this.props;
+    const { userFirstName = '', userLastName = '' } = this.props;
 
-    // Ніколи не треба змінювати в компоненті пропси, які він приймає
+    // Ніколи не змінюйте в компоненті пропси які він приймає
     // this.props.userFirstName = "Baddie";
 
-    // Умовний рендерінг - рендерінг певних елементів / компонентів за певною умовою
+    // Умовний рендерінг - рендерінг певних елементів / компонентів за
+    // певною умовою
 
     const fullName = `${userFirstName} ${userLastName}`.trim();
 
-    // if (fullName) {
-    //     return React.createElement(
-    //       'p',
-    //       { className: 'greetingText' },
-    //       `Hello, ${fullName}.`
-    //     );
-    //   } else {
-    //     return React.createElement(
-    //       'p',
-    //       { className: 'greetingText' },
-    //       `Hello, 'Guest.`
-    //     );
-    //   }
+    return fullName ? (
+      <h1 className='greetingText'>Hello {fullName}.</h1>
+    ) : (
+      <p className='guestGreeting'>Hello Guest.</p>
+    );
 
+    // // if (fullName) {
+    // //   return React.createElement(
+    // //     'p',
+    // //     { className: 'greetingText' },
+    // //     `Hello, ${fullName}.`
+    // //   );
+    // // } else {
+    // //   return React.createElement(
+    // //     'p',
+    // //     { className: 'greetingText' },
+    // //     `Hello, 'Guest.`
+    // //   );
+    // // }
+
+    // // if (fullName) {
+    // //   return React.createElement(
+    // //     'h1',
+    // //     { className: 'greetingText' },
+    // //     `Hello, ${fullName}.`
+    // //   );
+    // // } else {
+    // //   return React.createElement(
+    // //     'p',
+    // //     { className: 'guestGreeting' },
+    // //     `Hello, Guest.`
+    // //   );
+    // // }
+
+    // let h1;
     // if (fullName) {
-    //   return React.createElement(
-    //     "h1",
-    //     { className: "greetingText" },
+    //   h1 = React.createElement(
+    //     'h1',
+    //     { className: 'greetingText' },
     //     `Hello, ${fullName}.`
     //   );
     // } else {
-    //   return React.createElement(
-    //     "p",
-    //     { className: "guestGreeting" },
+    //   h1 = React.createElement(
+    //     'p',
+    //     { className: 'guestGreeting' },
     //     `Hello, Guest.`
     //   );
     // }
 
-    let h1;
-    if (fullName) {
-      h1 = React.createElement(
-        "h1",
-        { className: "greetingText" },
-        `Hello, ${fullName}.`
-      );
-    } else {
-      h1 =  React.createElement(
-        "p",
-        { className: "guestGreeting" },
-        `Hello, Guest.`
-      );
-    }
+    // return h1;
 
-    return h1;
-
-    // return React.createElement(
-    //   "p",
-    //   { className: "greetingText" },
-    //   `Hello, ${fullName ? fullName : "Guest"}.`
-    // );
+    // // return React.createElement(
+    // //   'p',
+    // //   { className: 'greetingText' },
+    // //   `Hello, ${fullName ? fullName : 'Guest' }.`
+    // // );
   }
 }
 
