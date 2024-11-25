@@ -98,8 +98,8 @@ function App() {
   return (
     <>
       {/* <Greeting userFirstName="John" userLastName="Doe" />
-      <Greeting userFirstName="Sarah" />
-      <Greeting /> */}
+      <Greeting userFirstName="Sarah" /> */}
+      <Greeting /> 
       <ProductList products={products}/>
       {/* <Product product={products[0]} />
       <Product product={products[1]} /> */}
