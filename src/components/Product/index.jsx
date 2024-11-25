@@ -4,9 +4,9 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isFavourite: false,
-    };
+    // this.state = {
+    //   isFavourite: false,
+    // };
   }
 
   clickHandler = () => {
@@ -27,11 +27,10 @@ class Product extends React.Component {
     // зміна стану викличе повторне відмалювання
     // зміна пропсів також змушує ререндеритися компонент
     const {
-      product: { id, name, price, description },
+      product: { id, name, price, description, isFavourite },
       handleSwitchOrder,
+      toggleFavouriteProduct,
     } = this.props;
-
-    const { isFavourite } = this.state;
 
     return (
       <article id={`product-${id}`}>
@@ -44,7 +43,7 @@ class Product extends React.Component {
           {name} is {!isFavourite && "not"} favourite{" "}
         </p>
         {/* {!isFavourite && <p>{name} is favourite</p>} */}
-        <button id="btn" onClick={this.clickHandler}>
+        <button id="btn" onClick={() => toggleFavouriteProduct(id)}>
           Make Favourite
         </button>
         {/* Взаємодія Дитина - батько (коллбек, який змінює стан батька) */}
