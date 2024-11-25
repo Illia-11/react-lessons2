@@ -8,9 +8,9 @@ class ProductList extends React.Component {
 
   handleSwitchOrder = () => {
     this.setState({
-      isReverseOrder: !this.state.isReverseOrder
+      isReverseOrder: !this.state.isReverseOrder,
     });
-  }
+  };
 
   render() {
     const { products } = this.props;
@@ -18,7 +18,13 @@ class ProductList extends React.Component {
 
     const productsComponents = products.map((product) => {
       // Взаємодія батько - дитина (пропси)
-      return <Product key={product.id} product={product} />;
+      return (
+        <Product
+          key={product.id}
+          product={product}
+          handleSwitchOrder={this.handleSwitchOrder}
+        />
+      );
     });
 
     return (

@@ -28,6 +28,7 @@ class Product extends React.Component {
     // зміна пропсів також змушує ререндеритися компонент
     const {
       product: { id, name, price, description },
+      handleSwitchOrder,
     } = this.props;
 
     const { isFavourite } = this.state;
@@ -46,6 +47,8 @@ class Product extends React.Component {
         <button id="btn" onClick={this.clickHandler}>
           Make Favourite
         </button>
+        {/* Взаємодія Дитина - батько (коллбек, який змінює стан батька) */}
+        <button onClick={handleSwitchOrder}>Change Parent order</button>
       </article>
     );
   }

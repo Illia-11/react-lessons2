@@ -99,8 +99,8 @@ function App() {
     <>
       {/* <Greeting userFirstName="John" userLastName="Doe" />
       <Greeting userFirstName="Sarah" /> */}
-      <Greeting /> 
-      <ProductList products={products}/>
+      <Greeting />
+      <ProductList products={products} />
       {/* <Product product={products[0]} />
       <Product product={products[1]} /> */}
       {/* {shouldClassComponentsRender ? (
