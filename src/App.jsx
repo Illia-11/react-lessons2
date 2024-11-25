@@ -1,27 +1,27 @@
-import React from "react";
+import React, { useState } from 'react';
 // import MyClassComponent from './components/MyClassComponent';
 // import MyFunctionalComponent from './components/MyFunctionComponent';
-import Greeting from "./components/Greeting";
-import ProductDashboard from "./components/ProductDashboard";
-import Clock from "./components/Clock";
+import Greeting from './components/Greeting';
+import ProductDashboard from './components/ProductDashboard';
+import Clock from './components/Clock';
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
-  "div",
-  { id: "div", title: "div", className: "div" },
+  'div',
+  { id: 'div', title: 'div', className: 'div' },
   React.createElement(
-    "h3",
-    { className: "heading", disabled: true },
-    "Div title"
+    'h3',
+    { className: 'heading', disabled: true },
+    'Div title'
   ),
-  React.createElement("p", { className: "text" }, "Div text")
+  React.createElement('p', { className: 'text' }, 'Div text')
 );
 
 // JSX версія елементу зверху
 const elem2 = (
-  <div id="div" title="div" className="div">
-    <h3 className="heading">Div title</h3>
-    <p className="text">Div text</p>
+  <div id='div' title='div' className='div'>
+    <h3 className='heading'>Div title</h3>
+    <p className='text'>Div text</p>
   </div>
 );
 
@@ -48,9 +48,12 @@ const elem2 = (
 // const frag = <></>;
 
 function App() {
+  const [isClockRendered, setIsClockRendered] = useState(true);
+
   return (
     <>
-      <Clock />
+      <button onClick={() => setIsClockRendered(!isClockRendered)}>Toggle Clock</button>
+      {isClockRendered && <Clock />}
       <Greeting />
       <ProductDashboard />
     </>
