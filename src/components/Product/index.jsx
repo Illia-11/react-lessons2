@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Product.module.css";
 
 class Product extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Product extends React.Component {
     } = this.props;
 
     return (
-      <article id={`product-${id}`}>
+      <article id={`product-${id}`} className={styles.container}>
         <h2>{name}</h2>
         <p>Price: {price}</p>
         <p>{description}</p>
