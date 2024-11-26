@@ -12,18 +12,19 @@ class RegistrationForm extends React.Component {
   };
 
   hadnleSubmit = (e) => {
+    const { email, password, nickname } = this.state;
     e.preventDefault();
 
     console.log(e);
 
     // вивести email в консоль
-    console.log(e.target.elements.email.value);
+    // console.log(e.target.elements.email.value);
 
     const newUserData = {
       // дістаємо значення з єдиного джерела істини
-      email: this.state.email,
-      password: e.target.elements.password.value,
-      nickname: e.target.elements.email.value,
+      email,
+      password,
+      nickname,
     };
 
     // тут робимо запит на сервер
