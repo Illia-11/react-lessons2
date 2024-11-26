@@ -5,6 +5,12 @@ function registerUser(userData) {
 }
 
 class RegistrationForm extends React.Component {
+  state = {
+    email: "",
+    password: "",
+    nickname: "",
+  };
+
   hadnleSubmit = (e) => {
     e.preventDefault();
 
@@ -14,24 +20,64 @@ class RegistrationForm extends React.Component {
     console.log(e.target.elements.email.value);
 
     const newUserData = {
-      email: e.target.elements.email.value,
+      // дістаємо значення з єдиного джерела істини
+      email: this.state.email,
       password: e.target.elements.password.value,
-      nickname: e.target.elements.email.value
-    }
+      nickname: e.target.elements.email.value,
+    };
 
     // тут робимо запит на сервер
-    registerUser(newUserData)
+    registerUser(newUserData);
 
     // скинути форму
     e.target.reset();
   };
 
+  hadnleEmailChange = (e) => {
+    // console.log(e.target.value);
+
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  handlePasswordChange = ({ target: { value } }) => {
+    this.setState({
+      password: value,
+    });
+  };
+
+  handleNicknameChange = ({ target: { value } }) => {
+    this.setState({
+      nickname: value,
+    });
+  };
+
   render() {
+    const { email, password, nickname } = this.state;
     return (
       <form onSubmit={this.hadnleSubmit}>
-        <input type="email" name="email" placeholder="Enter email" />
-        <input type="password" name="password" placeholder="Enter password" />
-        <input type="text" name="nickname" placeholder="Enter nickname" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={this.hadnleEmailChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={this.handlePasswordChange}
+        />
+        <input
+          type="text"
+          name="nickname"
+          placeholder="Enter nickname"
+          value={nickname}
+          onChange={this.handleNicknameChange}
+        />
         <button>Register</button>
       </form>
     );
