@@ -1,20 +1,24 @@
-import React from "react";
+import React from 'react';
 
 function registerUser(userData) {
-  alert("user registered");
+  console.log(userData);
+  alert('user regisetered!');
 }
 
 class RegistrationForm extends React.Component {
   state = {
-    email: "",
-    password: "",
-    nickname: "",
-    country: "SWE",
-    comment: "",
+    email: '',
+    password: '',
+    nickname: '',
+    country: 'UA',
+    comment: '',
+    isSubscribed: false,
+    gender: 'male',
   };
 
-  hadnleSubmit = (e) => {
+  handleSubmit = (e) => {
     const { email, password, nickname } = this.state;
+
     e.preventDefault();
 
     console.log(e);
@@ -23,7 +27,11 @@ class RegistrationForm extends React.Component {
     // console.log(e.target.elements.email.value);
 
     const newUserData = {
-      // дістаємо значення з єдиного джерела істини
+      // email: e.target.elements.email.value,
+      // дістаємо значення з единого джерела істини
+      // email: email,
+      // password: password,
+      // nickname: nickname,
       email,
       password,
       nickname,
@@ -36,8 +44,10 @@ class RegistrationForm extends React.Component {
     e.target.reset();
   };
 
-  hadnleEmailChange = (e) => {
-    // console.log(e.target.value);
+  handleEmailChange = (e) => {
+    console.log(e.target.value);
+
+    console.log(e.target.name);
 
     this.setState({
       email: e.target.value,
@@ -56,44 +66,87 @@ class RegistrationForm extends React.Component {
     });
   };
 
-  handleChange = ({ target: { value, name } }) => {
+  handleChange = ({ target: { value, name, type, checked } }) => {
+    const newValue = type === 'checkbox' ? checked : value;
+
     this.setState({
-      [name]: value,
+      [name]: newValue,
     });
   };
 
   render() {
-    const { email, password, nickname, country, comment } = this.state;
+    const {
+      email,
+      password,
+      nickname,
+      country,
+      comment,
+      isSubscribed,
+      gender,
+    } = this.state;
+
     return (
-      <form onSubmit={this.hadnleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
+          type='email'
+          name='email'
+          placeholder='Enter email'
           value={email}
           onChange={this.handleChange}
         />
         <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
+          type='password'
+          name='password'
+          placeholder='Enter password'
           value={password}
           onChange={this.handleChange}
         />
         <input
-          type="text"
-          name="nickname"
-          placeholder="Enter nickname"
+          type='text'
+          name='nickname'
+          placeholder='Enter nickname'
           value={nickname}
           onChange={this.handleChange}
         />
-        <select name="country" value={country} onChange={this.handleChange}>
-          <option value="UA">Ukraine</option>
-          <option value="UK">United Kingdom</option>
-          <option value="SWE">Sweden</option>
-          <option value="GE">Georgia</option>
+        <select name='country' value={country} onChange={this.handleChange}>
+          <option value='UA'>Ukraine</option>
+          <option value='UK'>United Kingdom</option>
+          <option value='SWE'>Sweden</option>
+          <option value='JP'>Japan</option>
         </select>
-        <textarea name="comment" value={comment} onChange={this.handleChange} />
+        <textarea name='comment' value={comment} onChange={this.handleChange} />
+        <label>
+          <input
+            type='checkbox'
+            name='isSubscribed'
+            checked={isSubscribed}
+            onChange={this.handleChange}
+          />
+          <span>Я згоден підписатися на ваш спам</span>
+        </label>
+        <fieldset>
+          <legend>Your gender</legend>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              onChange={this.handleChange}
+              checked={gender === 'male'}
+              value='male'
+            />{' '}
+            Male
+          </label>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              onChange={this.handleChange}
+              checked={gender === 'female'}
+              value='female'
+            />{' '}
+            Female
+          </label>
+        </fieldset>
         <button>Register</button>
       </form>
     );
