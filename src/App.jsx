@@ -5,6 +5,7 @@ import Clock from "./components/Clock";
 import RegistrationForm from "./components/RegistrationFrom";
 import Header from "./components/Header";
 import UserProfile from "./components/UserProfile";
+import List from "./components/List";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
@@ -58,7 +59,7 @@ class App extends React.Component {
       email: "testuser@gmail.com",
       age: 12,
     },
-  }
+  };
 
   handleLogout = () => {
     this.setState({
@@ -84,8 +85,23 @@ class App extends React.Component {
 
     return (
       <>
-        <Header user={user} handleLogout={this.handleLogout} handleLogin={this.handleLogin}/>
-        <UserProfile user={user}/>
+        <Header
+          user={user}
+          handleLogout={this.handleLogout}
+          handleLogin={this.handleLogin}
+        />
+        <UserProfile user={user} />
+        <List listTitle="Покупки в магазині" listType="ordered">
+          <li>Пиріг</li>
+          <li>Цукерки</li>
+          <li>Морозиво</li>
+        </List>
+        <List listTitle="Чорна пʼятниця 2024" listType="unordered">
+          <li>Телефон</li>
+          <li>Ноутбук</li>
+          <li>Повербанк</li>
+          <li>Ще один повербанк</li>
+        </List>
       </>
     );
   }
