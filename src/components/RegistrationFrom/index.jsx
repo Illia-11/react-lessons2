@@ -130,7 +130,7 @@ class RegistrationForm extends React.Component {
             checked={isSubscribed}
             onChange={this.handleChange}
           />
-          <span>Я згоден підписатися на ваш спам</span>
+          <span>Штука, яка зазвичай відповідає за якусь згоду</span>
         </label>
         <fieldset>
           <legend>Your gender</legend>
