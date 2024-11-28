@@ -6,6 +6,8 @@ import RegistrationForm from "./components/RegistrationFrom";
 import Header from "./components/Header";
 import UserProfile from "./components/UserProfile";
 import List from "./components/List";
+import Avatar from "./components/Avatar";
+import GuestAvatar from "./components/GuestAvatar";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
@@ -101,6 +103,26 @@ class App extends React.Component {
           <li>Ноутбук</li>
           <li>Повербанк</li>
           <li>Ще один повербанк</li>
+        </List>
+        <List listTitle="Користувачі">
+          <li>
+            <h2>Користувач 1</h2>
+            <Avatar
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvPqgJIt7-zvfCQ2MbXA-_wCkNgvnI2OQY7Q&s"
+              alt="Користувач 1"
+            />
+          </li>
+          <li>
+            <h2>Гість</h2>
+            <Avatar
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAMM19ibc2ZGK72i5uLElaeQOu33N02S8xeQ&s"
+              alt="Гість"
+            />
+          </li>
+          <li>
+            <h2>Гість</h2>
+            <GuestAvatar text="bfjsdklvs"/>
+          </li>
         </List>
       </>
     );
