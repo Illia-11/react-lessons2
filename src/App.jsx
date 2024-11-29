@@ -9,6 +9,7 @@ import List from "./components/List";
 import Avatar from "./components/Avatar";
 import GuestAvatar from "./components/GuestAvatar";
 import ComponentA from "./components/drillingComponents/A";
+import UsersLoader from "./components/UsersLoader";
 
 
 // звичайний елемент у реакті
@@ -89,7 +90,8 @@ class App extends React.Component {
 
     return (
       <>
-      <ComponentA />
+      <UsersLoader />
+      {/* <ComponentA />
         <Header
           user={user}
           handleLogout={this.handleLogout}
@@ -126,7 +128,7 @@ class App extends React.Component {
             <h2>Гість</h2>
             <GuestAvatar text="bfjsdklvs"/>
           </li>
-        </List>
+        </List> */}
       </>
     );
   }
