@@ -7,6 +7,31 @@ class UsersLoader extends Component {
     isLoading: false,
   };
 
+  componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((users) => {
+        console.log(users);
+        this.setState({
+          users,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          error,
+        });
+      })
+      .finally(() => {
+        this.setState({
+          isLoading: false,
+        });
+      });
+  }
+
   render() {
     const { users, isLoading, error } = this.state;
 
@@ -20,7 +45,7 @@ class UsersLoader extends Component {
 
     const usersCards = users.map((user) => {
       return (
-        <div>
+        <div key={user.id}>
           <pre>{JSON.stringify(user, null, 4)}</pre>
         </div>
       );
