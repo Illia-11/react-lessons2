@@ -9,6 +9,32 @@ class UsersLoader extends Component {
   };
 
   componentDidMount() {
+    this.load();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
+      this.load();
+    }
+  }
+
+  handlePrev = () => {
+    const { currentPage } = this.state;
+
+    this.setState({
+      currentPage: currentPage > 1 ? currentPage - 1 : 1,
+    });
+  };
+
+  handleNext = () => {
+    const { currentPage } = this.state;
+
+    this.setState({
+      currentPage: currentPage + 1,
+    });
+  };
+
+  load = () => {
     const { currentPage } = this.state;
 
     this.setState({
@@ -35,53 +61,6 @@ class UsersLoader extends Component {
           isLoading: false,
         });
       });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.currentPage !== this.state.currentPage) {
-      const { currentPage } = this.state;
-
-      this.setState({
-        isLoading: true,
-      });
-
-      fetch(
-        `https://randomuser.me/api/?seed=12345&results=10&nat=ua&page=${currentPage}`
-      )
-        .then((res) => res.json())
-        .then(({ results: users }) => {
-          // console.log(users);
-          this.setState({
-            users,
-          });
-        })
-        .catch((error) => {
-          this.setState({
-            error,
-          });
-        })
-        .finally(() => {
-          this.setState({
-            isLoading: false,
-          });
-        });
-    }
-  }
-
-  handlePrev = () => {
-    const { currentPage } = this.state;
-
-    this.setState({
-      currentPage: currentPage > 1 ? currentPage - 1 : 1,
-    });
-  };
-
-  handleNext = () => {
-    const { currentPage } = this.state;
-
-    this.setState({
-      currentPage: currentPage + 1,
-    });
   };
 
   render() {
