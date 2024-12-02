@@ -9,7 +9,7 @@ class MessagesLoader extends Component {
     this.setState({
       isLoading: true,
     });
-    fetch('/messages.json')
+    fetch('/message.json')
       .then((res) => res.json())
       .then((messages) => {
         console.log(messages);
