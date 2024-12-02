@@ -41,7 +41,9 @@ class DataLoader extends Component {
 
   render() {
     // render - функція, яка містить jsx, який треба відмалювати
-    const jsxLayout = this.props.render(this.state);
+    // const jsxLayout = this.props.render(this.state);
+
+    const jsxLayout = this.props.children(this.state, this.load);
 
     return jsxLayout;
   }
