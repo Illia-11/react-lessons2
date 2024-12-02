@@ -7,7 +7,7 @@ class UsersLoader extends Component {
     error: null,
     isLoading: false,
     currentPage: 1,
-    results: 2
+    results: 2,
   };
 
   componentDidMount() {
@@ -46,7 +46,7 @@ class UsersLoader extends Component {
     // fetch(
     //   `https://randomuser.me/api/?seed=12345&results=10&nat=ua&page=${currentPage}`
     // ).then(res => res.json())
-    getUsers({ results, currentPage })
+    getUsers({ results, page: currentPage })
       .then((users) => {
         this.setState({
           users,
