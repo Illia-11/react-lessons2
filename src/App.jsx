@@ -116,6 +116,7 @@ class App extends React.Component {
 
     return (
       <>
+      <ComponentA />
         <DataLoader loadData={getMessages} children={renderMessages} />
         <DataLoader loadData={getMessages}>{renderMessages}</DataLoader>
         {/* <MessagesLoader /> */}
