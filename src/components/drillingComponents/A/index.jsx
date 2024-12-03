@@ -1,15 +1,9 @@
 import React, { Component } from "react";
+import { OurContext } from "../../../context";
 import ComponentB from "../B";
 
-/*
-  Робота з контекстом:
-    1. Створити контекст
-    2. Покласти дані в контекст
-    3. Отримати дані там де вони потрібні
-*/
-
 // 1. Створити контекст
-const OurContext = React.createContext();
+// const OurContext = React.createContext();
 
 class ComponentA extends Component {
   state = {
