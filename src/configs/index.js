@@ -4,7 +4,12 @@ const CONSTANTS = {
   NATIONALITY: ["ua","uk","jp"],
   EXCLUDE_FIELDS: ["id"],
   SEED: "12345",
-  USER_SERVER: "https://randomuser.me/api"
+  USER_SERVER: "https://randomuser.me/api",
+  // enum - перечислення
+  THEMES: {
+    DARK_THEME: "dark",
+    LIGHT_THEME: "light"
+  }
 }
 
 export default CONSTANTS;
