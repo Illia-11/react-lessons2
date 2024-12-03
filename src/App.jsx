@@ -12,6 +12,7 @@ import ComponentA from "./components/drillingComponents/A";
 import UsersLoader from "./components/UsersLoader";
 import MessagesLoader from "./components/MessagesLoader";
 import DataLoader from "./components/DataLoader";
+import { UserContext } from "./context";
 
 // звичайний елемент у реакті
 const elem1 = React.createElement(
@@ -99,24 +100,25 @@ class App extends React.Component {
       const { data: messages, isLoading, error } = state;
 
       return (
-        <div>
-          {isLoading && <div>LOADING ...</div>}
-          {error && <div>ERROR: {error.message}</div>}
-          {messages &&
-            messages.map((message) => (
-              <article key={message.id}>
-                <h2>{message.title}</h2>
-                <h3>By {message.author}</h3>
-                <p>{message.text}</p>
-              </article>
-            ))}
-        </div>
+          <div>
+            {isLoading && <div>LOADING ...</div>}
+            {error && <div>ERROR: {error.message}</div>}
+            {messages &&
+              messages.map((message) => (
+                <article key={message.id}>
+                  <h2>{message.title}</h2>
+                  <h3>By {message.author}</h3>
+                  <p>{message.text}</p>
+                </article>
+              ))}
+          </div>
       );
     };
 
     return (
       <>
-      <ComponentA />
+        <UserContext.Provider value={user}>
+        <ComponentA />
         <DataLoader loadData={getMessages} children={renderMessages} />
         <DataLoader loadData={getMessages}>{renderMessages}</DataLoader>
         {/* <MessagesLoader /> */}
@@ -159,6 +161,7 @@ class App extends React.Component {
             <GuestAvatar text="bfjsdklvs"/>
           </li>
         </List> */}
+        </UserContext.Provider>
       </>
     );
   }
