@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeContext } from '../../context';
 import CONSTANTS from '../../configs';
-import styles from "./Header.module.css"
+import styles from "./Header.module.scss"
 
 class Header extends Component {
   render() {
