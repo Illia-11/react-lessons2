@@ -1,20 +1,51 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { ThemeContext } from '../../context';
+import CONSTANTS from '../../configs';
 
 class Header extends Component {
   render() {
-    const { user, handleLogin, handleLogout } = this.props;
+    const { user, handleLogout, handleLogin } = this.props;
 
-    const fullName = user ? `${user.firstName} ${user.lastName}` : "Guest";
+    const fullName = user
+      ? `${user.firstName} ${user.lastName}`.trim()
+      : 'Guest';
 
     const logoutBtn = <button onClick={handleLogout}>Вийти</button>;
     const loginBtn = <button onClick={handleLogin}>Увійти</button>;
 
     return (
-      <header>
-        <h1>Мій сайт</h1>
-        <p>Привіт {fullName}</p>
-        {user ? logoutBtn : loginBtn}
-      </header>
+      <ThemeContext.Consumer>
+        {([theme, switchTheme]) => {
+          let currentThemeClass;
+
+          // if (theme === CONSTANTS.THEMES.DARK_THEME) {
+          //   currentThemeClass = styles.darkTheme;
+          // } else if (theme === CONSTANTS.THEMES.LIGHT_THEME) {
+          //   currentThemeClass = styles.lightTheme;
+          // }
+
+          // const className = `${styles.container} ${currentThemeClass}`;
+
+          return (
+            <header>
+              <h1>Мій сайт</h1>
+              <p>Привіт {fullName}</p>
+              {user ? logoutBtn : loginBtn}
+              <button
+                onClick={() => {
+                  const newTheme =
+                    theme === CONSTANTS.THEMES.DARK_THEME
+                      ? CONSTANTS.THEMES.LIGHT_THEME
+                      : CONSTANTS.THEMES.DARK_THEME;
+                  switchTheme(newTheme);
+                }}
+              >
+                Змінити тему на {theme === 'dark' ? 'світлу' : 'темну'}
+              </button>
+            </header>
+          );
+        }}
+      </ThemeContext.Consumer>
     );
   }
 }
