@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeContext } from '../../context';
 import CONSTANTS from '../../configs';
+import styles from "./Header.module.css"
 
 class Header extends Component {
   render() {
@@ -18,16 +19,16 @@ class Header extends Component {
         {([theme, switchTheme]) => {
           let currentThemeClass;
 
-          // if (theme === CONSTANTS.THEMES.DARK_THEME) {
-          //   currentThemeClass = styles.darkTheme;
-          // } else if (theme === CONSTANTS.THEMES.LIGHT_THEME) {
-          //   currentThemeClass = styles.lightTheme;
-          // }
+          if (theme === CONSTANTS.THEMES.DARK_THEME) {
+            currentThemeClass = styles.darkTheme;
+          } else if (theme === CONSTANTS.THEMES.LIGHT_THEME) {
+            currentThemeClass = styles.lightTheme;
+          }
 
-          // const className = `${styles.container} ${currentThemeClass}`;
+          const className = `${styles.container} ${currentThemeClass}`;
 
           return (
-            <header>
+            <header className={className}>
               <h1>Мій сайт</h1>
               <p>Привіт {fullName}</p>
               {user ? logoutBtn : loginBtn}
