@@ -1,79 +1,70 @@
-import React from "react";
-import * as yup from "yup";
-// styles - обʼєкт, ключі якого це назви селекторів у css
-// а значення - згенеровані назви для стилів
-import styles from "./RegistrationForm.module.css";
+import React from 'react';
+import { REGISTRATION_SCHEMA } from '../../validation';
+// styles - об'єкт ключі якого назви ваших селекторів у css
+// a значення - згенеровані назви для стилів
+import styles from './RegistrationForm.module.css';
 
 function registerUser(userData) {
   console.log(userData);
-  alert("user regisetered!");
+  alert('user regisetered!');
 }
 
-const REGISTRATION_SCHEMA = yup.object({
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[;:,/?&%$]).{8,32}$/, "Password must be normal")
-    .required(),
-  nickname: yup
-    .string()
-    .matches(/^[A-Za-z]\w{7,63}$/, "Nickname must start with letter and be 8 - 64 sumbols")
-    .required(),
-  isSubscribed: yup.boolean().required(),
-  gender: yup.string(),
-});
 
-const goodUser = {
-  email: "user@gmail.com",
-  password: "123Ad;vcsjav",
-  nickname: "User12345",
-  isSubscribed: true,
-  gender: "male",
-};
+// const goodUser = {
+//   email: 'user@gmail.com',
+//   password: '12345Admin#',
+//   nickname: 'User1234',
+//   isSubscribed: true,
+//   gender: 'male'
+// }
 
-const badUser1 = {};
+// const badUser1 = {
 
-const badUser2 = {
-  email: "usermail",
-  password: "userpassword",
-  nickname: "12345",
-};
+// }
 
-const isGoodUserValid = REGISTRATION_SCHEMA.isValidSync(goodUser);
-const isBadUser1Valid = REGISTRATION_SCHEMA.isValidSync(badUser1);
-const isBadUser2Valid = REGISTRATION_SCHEMA.isValidSync(badUser2);
+// const badUser2 = {
+//   email: 'useremail',
+//   password: 'userpassword',
+//   nickname: '12345',
+// }
 
-console.log(isGoodUserValid);
-console.log(isBadUser1Valid);
-console.log(isBadUser2Valid);
+// const isGoodUserValid = REGISTRATION_SCHEMA.isValidSync(goodUser);
+// const isBadUser1Valid = REGISTRATION_SCHEMA.isValidSync(badUser1);
+// const isBadUser2Valid = REGISTRATION_SCHEMA.isValidSync(badUser2);
 
-const validated1 = REGISTRATION_SCHEMA.validateSync(goodUser);
+// console.log(isGoodUserValid);
+// console.log(isBadUser1Valid);
+// console.log(isBadUser2Valid);
 
-try {
-  // const validated2 = REGISTRATION_SCHEMA.validateSync(badUser1, {abortEarly: false});
-  const validated1 = REGISTRATION_SCHEMA.validateSync(badUser2, {abortEarly: false});
-  // console.log(validated2);
-  // console.log(validated3);
-} catch (error) {
-  console.dir(error);
-}
+// const validated1 = REGISTRATION_SCHEMA.validateSync(goodUser);
 
-console.log(validated1);
+// try {
+//   // const validated2 = REGISTRATION_SCHEMA.validateSync(badUser1, {abortEarly: false});
+//   const validated3 = REGISTRATION_SCHEMA.validateSync(badUser2, {abortEarly: false});
+//   // console.log(validated2);
+//   // console.log(validated3);
+// } catch (error) {
+//   console.dir(error);
+// }
+
+// console.log(validated1);
+
+
 
 const initialState = {
-  email: "",
-  password: "",
-  nickname: "",
-  country: "UA",
-  comment: "",
+  email: '',
+  password: '',
+  nickname: '',
+  country: 'UA',
+  comment: '',
   isSubscribed: false,
-  gender: "male",
+  gender: 'male',
 };
 
 class RegistrationForm extends React.Component {
   state = { ...initialState };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e) => {// 
     const { email, password, nickname } = this.state;
 
     e.preventDefault();
@@ -126,7 +117,7 @@ class RegistrationForm extends React.Component {
   };
 
   handleChange = ({ target: { value, name, type, checked } }) => {
-    const newValue = type === "checkbox" ? checked : value;
+    const newValue = type === 'checkbox' ? checked : value;
 
     this.setState({
       [name]: newValue,
@@ -144,66 +135,66 @@ class RegistrationForm extends React.Component {
       gender,
     } = this.state;
 
-    // щоб використати стилі з модулю css у className треба закидувати відповідну властивість
+    // щоб використати стилі з модулю css у className закидуєти відповідну властивість
     return (
       <form onSubmit={this.handleSubmit} className={styles.container}>
         <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
+          type='email'
+          name='email'
+          placeholder='Enter email'
           value={email}
           onChange={this.handleChange}
         />
         <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
+          type='password'
+          name='password'
+          placeholder='Enter password'
           value={password}
           onChange={this.handleChange}
         />
         <input
-          type="text"
-          name="nickname"
-          placeholder="Enter nickname"
+          type='text'
+          name='nickname'
+          placeholder='Enter nickname'
           value={nickname}
           onChange={this.handleChange}
         />
-        <select name="country" value={country} onChange={this.handleChange}>
-          <option value="UA">Ukraine</option>
-          <option value="UK">United Kingdom</option>
-          <option value="SWE">Sweden</option>
-          <option value="JP">Japan</option>
+        <select name='country' value={country} onChange={this.handleChange}>
+          <option value='UA'>Ukraine</option>
+          <option value='UK'>United Kingdom</option>
+          <option value='SWE'>Sweden</option>
+          <option value='JP'>Japan</option>
         </select>
-        <textarea name="comment" value={comment} onChange={this.handleChange} />
+        <textarea name='comment' value={comment} onChange={this.handleChange} />
         <label>
           <input
-            type="checkbox"
-            name="isSubscribed"
+            type='checkbox'
+            name='isSubscribed'
             checked={isSubscribed}
             onChange={this.handleChange}
           />
-          <span>Штука, яка зазвичай відповідає за якусь згоду</span>
+          <span>Я згоден підписатися на ваш спам</span>
         </label>
         <fieldset>
           <legend>Your gender</legend>
           <label>
             <input
-              type="radio"
-              name="gender"
+              type='radio'
+              name='gender'
               onChange={this.handleChange}
-              checked={gender === "male"}
-              value="male"
-            />{" "}
+              checked={gender === 'male'}
+              value='male'
+            />{' '}
             Male
           </label>
           <label>
             <input
-              type="radio"
-              name="gender"
+              type='radio'
+              name='gender'
               onChange={this.handleChange}
-              checked={gender === "female"}
-              value="female"
-            />{" "}
+              checked={gender === 'female'}
+              value='female'
+            />{' '}
             Female
           </label>
         </fieldset>
