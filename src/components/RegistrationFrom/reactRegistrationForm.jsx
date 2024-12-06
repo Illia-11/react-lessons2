@@ -1,14 +1,13 @@
-import React from 'react';
-import { REGISTRATION_SCHEMA } from '../../validation';
+import React from "react";
+import { REGISTRATION_SCHEMA } from "../../validation";
 // styles - об'єкт ключі якого назви ваших селекторів у css
 // a значення - згенеровані назви для стилів
-import styles from './RegistrationForm.module.css';
+import styles from "./RegistrationForm.module.css";
 
 function registerUser(userData) {
   console.log(userData);
-  alert('user regisetered!');
+  alert("user regisetered!");
 }
-
 
 // const goodUser = {
 //   email: 'user@gmail.com',
@@ -49,22 +48,21 @@ function registerUser(userData) {
 
 // console.log(validated1);
 
-
-
 const initialState = {
-  email: '',
-  password: '',
-  nickname: '',
-  country: 'UA',
-  comment: '',
+  email: "",
+  password: "",
+  nickname: "",
+  country: "UA",
+  comment: "",
   isSubscribed: false,
-  gender: 'male',
+  gender: "male",
 };
 
 class RegistrationForm extends React.Component {
   state = { ...initialState };
 
-  handleSubmit = (e) => {// 
+  handleSubmit = (e) => {
+    //
     const { email, password, nickname } = this.state;
 
     e.preventDefault();
@@ -117,7 +115,7 @@ class RegistrationForm extends React.Component {
   };
 
   handleChange = ({ target: { value, name, type, checked } }) => {
-    const newValue = type === 'checkbox' ? checked : value;
+    const newValue = type === "checkbox" ? checked : value;
 
     this.setState({
       [name]: newValue,
@@ -139,37 +137,37 @@ class RegistrationForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className={styles.container}>
         <input
-          type='email'
-          name='email'
-          placeholder='Enter email'
+          type="email"
+          name="email"
+          placeholder="Enter email"
           value={email}
           onChange={this.handleChange}
         />
         <input
-          type='password'
-          name='password'
-          placeholder='Enter password'
+          type="password"
+          name="password"
+          placeholder="Enter password"
           value={password}
           onChange={this.handleChange}
         />
         <input
-          type='text'
-          name='nickname'
-          placeholder='Enter nickname'
+          type="text"
+          name="nickname"
+          placeholder="Enter nickname"
           value={nickname}
           onChange={this.handleChange}
         />
-        <select name='country' value={country} onChange={this.handleChange}>
-          <option value='UA'>Ukraine</option>
-          <option value='UK'>United Kingdom</option>
-          <option value='SWE'>Sweden</option>
-          <option value='JP'>Japan</option>
+        <select name="country" value={country} onChange={this.handleChange}>
+          <option value="UA">Ukraine</option>
+          <option value="UK">United Kingdom</option>
+          <option value="SWE">Sweden</option>
+          <option value="JP">Japan</option>
         </select>
-        <textarea name='comment' value={comment} onChange={this.handleChange} />
+        <textarea name="comment" value={comment} onChange={this.handleChange} />
         <label>
           <input
-            type='checkbox'
-            name='isSubscribed'
+            type="checkbox"
+            name="isSubscribed"
             checked={isSubscribed}
             onChange={this.handleChange}
           />
@@ -179,22 +177,22 @@ class RegistrationForm extends React.Component {
           <legend>Your gender</legend>
           <label>
             <input
-              type='radio'
-              name='gender'
+              type="radio"
+              name="gender"
               onChange={this.handleChange}
-              checked={gender === 'male'}
-              value='male'
-            />{' '}
+              checked={gender === "male"}
+              value="male"
+            />{" "}
             Male
           </label>
           <label>
             <input
-              type='radio'
-              name='gender'
+              type="radio"
+              name="gender"
               onChange={this.handleChange}
-              checked={gender === 'female'}
-              value='female'
-            />{' '}
+              checked={gender === "female"}
+              value="female"
+            />{" "}
             Female
           </label>
         </fieldset>
