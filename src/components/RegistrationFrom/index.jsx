@@ -1,12 +1,64 @@
 import React from "react";
+import * as yup from "yup";
 // styles - обʼєкт, ключі якого це назви селекторів у css
 // а значення - згенеровані назви для стилів
-import  styles from "./RegistrationForm.module.css";
+import styles from "./RegistrationForm.module.css";
 
 function registerUser(userData) {
   console.log(userData);
   alert("user regisetered!");
 }
+
+const REGISTRATION_SCHEMA = yup.object({
+  email: yup.string().email().required(),
+  password: yup
+    .string()
+    .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[;:,/?&%$]).{8,32}$/, "Password must be normal")
+    .required(),
+  nickname: yup
+    .string()
+    .matches(/^[A-Za-z]\w{7,63}$/, "Nickname must start with letter and be 8 - 64 sumbols")
+    .required(),
+  isSubscribed: yup.boolean().required(),
+  gender: yup.string(),
+});
+
+const goodUser = {
+  email: "user@gmail.com",
+  password: "123Ad;vcsjav",
+  nickname: "User12345",
+  isSubscribed: true,
+  gender: "male",
+};
+
+const badUser1 = {};
+
+const badUser2 = {
+  email: "usermail",
+  password: "userpassword",
+  nickname: "12345",
+};
+
+const isGoodUserValid = REGISTRATION_SCHEMA.isValidSync(goodUser);
+const isBadUser1Valid = REGISTRATION_SCHEMA.isValidSync(badUser1);
+const isBadUser2Valid = REGISTRATION_SCHEMA.isValidSync(badUser2);
+
+console.log(isGoodUserValid);
+console.log(isBadUser1Valid);
+console.log(isBadUser2Valid);
+
+const validated1 = REGISTRATION_SCHEMA.validateSync(goodUser);
+
+try {
+  // const validated2 = REGISTRATION_SCHEMA.validateSync(badUser1, {abortEarly: false});
+  const validated1 = REGISTRATION_SCHEMA.validateSync(badUser2, {abortEarly: false});
+  // console.log(validated2);
+  // console.log(validated3);
+} catch (error) {
+  console.dir(error);
+}
+
+console.log(validated1);
 
 const initialState = {
   email: "",
