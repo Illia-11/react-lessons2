@@ -2,6 +2,7 @@ import React from 'react';
 import { UserContext, ThemeContext } from './context';
 import Header from './components/Header';
 import CONSTANTS from './configs';
+import MouseTracker from './components/MouseTracker';
 
 class App extends React.Component {
   state = {
@@ -41,36 +42,21 @@ class App extends React.Component {
     });
   };
 
+  toggleTracker = () => {
+    this.setState({
+      isTrackerShown: !this.state.isTrackerShown,
+    })
+  }
+
   render() {
-    const { user, theme } = this.state;
-
-    const renderMessages = (state, load) => {
-      console.log(state);
-
-      const { data: messages, isLoading, error } = state;
-
-      return (
-        <div>
-          <button onClick={() => load()}>Load again</button>
-          {isLoading && <div>LOADING ...</div>}
-          {error && <div>ERROR: {error.message}</div>}
-          {messages &&
-            messages.map((message) => (
-              <article key={message.id}>
-                <h2>{message.title}</h2>
-                <h3>By {message.author}</h3>
-                <p>{message.text}</p>
-              </article>
-            ))}
-        </div>
-      );
-    };
+    const { user, theme, isTrackerShown } = this.state;
 
     return (
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
           <Header />
-
+          {isTrackerShown && <MouseTracker />}
+          <button onClick={this.toggleTracker}>toggle Tracker</button>
         </ThemeContext.Provider>
       </UserContext.Provider>
     );
