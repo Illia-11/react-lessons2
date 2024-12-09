@@ -1,16 +1,7 @@
 import React from 'react';
-// import DataLoader from './components/DataLoader';
-import * as API from './api';
-import ComponentA from './components/drillingComponents/A';
 import { UserContext, ThemeContext } from './context';
 import Header from './components/Header';
 import CONSTANTS from './configs';
-import RegistrationForm from './components/RegistrationFrom';
-import ProductDashboard from './components/ProductDashboard';
-import FormMouseTracker from './components/FormMouseTracker/classVersion.jsx';
-import FormMouseTrackerBadHooks from './components/FormMouseTracker/bandHookVersion.jsx';
-import FormMouseTrackerGoodHooks from './components/FormMouseTracker/index.jsx';
-
 
 class App extends React.Component {
   state = {
@@ -79,11 +70,7 @@ class App extends React.Component {
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
           <Header />
-          <ProductDashboard />
-          {/* <RegistrationForm /> */}
-          <FormMouseTracker />
-          <FormMouseTracker />
-          <FormMouseTracker />
+
         </ThemeContext.Provider>
       </UserContext.Provider>
     );
