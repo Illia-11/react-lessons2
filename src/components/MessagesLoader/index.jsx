@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+
+/*
+  Переробити на функціональний за допомогою хуків
+  useState i useEffect
+*/
+
 class MessagesLoader extends Component {
   state = {
     messages: [],
     isLoading: false,
     error: null,
   };
+
   componentDidMount() {
     this.setState({
       isLoading: true,
     });
+
     fetch('/message.json')
       .then((res) => res.json())
       .then((messages) => {
@@ -28,8 +36,10 @@ class MessagesLoader extends Component {
         });
       });
   }
+
   render() {
     const { messages, isLoading, error } = this.state;
+
     const messagesElems = messages.map((message) => (
       <article key={message.id}>
         <h2>{message.title}</h2>
@@ -37,6 +47,7 @@ class MessagesLoader extends Component {
         <p>{message.text}</p>
       </article>
     ));
+    
     return (
       <div>
         {isLoading && <div>LOADING ...</div>}
