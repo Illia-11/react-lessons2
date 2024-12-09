@@ -3,6 +3,7 @@ import { UserContext, ThemeContext } from './context';
 import Header from './components/Header';
 import CONSTANTS from './configs';
 import MouseTracker from './components/MouseTracker';
+import FormMouseTracker from './components/FormMouseTracker';
 
 class App extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class App extends React.Component {
       age: 12,
     },
     theme: CONSTANTS.THEMES.LIGHT_THEME,
+    isTrackerShown: true,
   };
 
   handleLogout = () => {
@@ -55,7 +57,7 @@ class App extends React.Component {
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
           <Header />
-          {isTrackerShown && <MouseTracker />}
+          {isTrackerShown && <FormMouseTracker />}
           <button onClick={this.toggleTracker}>toggle Tracker</button>
         </ThemeContext.Provider>
       </UserContext.Provider>

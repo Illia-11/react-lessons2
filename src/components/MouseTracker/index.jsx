@@ -15,7 +15,9 @@ const MouseTracker = (props) => {
 
   /*
     Хук для роботи з побічними елементами
-    Приймає функцію і повертає undefined
+    Приймає функцію першим аргументом та масив залеєностей другим і повертає undefined
+    Функція буде містити ваші побічні ефекти
+    Масив залежностей дозволить керувати частотою запуску функції
   */
   useEffect(function effect() {
     /*
@@ -33,7 +35,7 @@ const MouseTracker = (props) => {
       console.log("effectCleanup callback");
       document.removeEventListener("mousemove", handleChangeCoords);
     };
-  });
+  }, []);
 
   return (
     <div>
