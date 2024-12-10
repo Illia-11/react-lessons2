@@ -1,48 +1,68 @@
-import queryString from "query-string";
-import CONSTANTS from "../configs";
+import queryString from 'query-string';
+import CONSTANTS from '../configs';
 
 /**
- * @param {object} options 
+ * @param {object} options
  * @param {number} options.page
  * @param {number} options.results
  * @param {string} options.exc
  * @returns {Promise<Array>}
  */
-export function getUsers (options) {
+export function getUsers(options) {
   const defaultOptions = {
     seed: CONSTANTS.SEED,
     results: CONSTANTS.RESULTS,
     page: CONSTANTS.STARTING_PAGE,
     nat: CONSTANTS.NATIONALITY,
     exc: CONSTANTS.EXCLUDE_FIELDS,
-    user_server: CONSTANTS.USER_SERVER
-  }
+  };
 
   const finalizedOptions = {
     ...defaultOptions,
     ...options,
-  }
+  };
 
-  const queryStr = queryString.stringify(finalizedOptions, {arrayFormat: "comma"})
+  const queryStr = queryString.stringify(finalizedOptions, {
+    arrayFormat: 'comma',
+  });
 
-  const usersPromise = fetch(`/?${queryStr}`)
-    .then(res => res.json())
+  const usersPromise = fetch(`${CONSTANTS.USER_SERVER}/?${queryStr}`)
+    .then((res) => res.json())
     .then((responseWithUsers) => responseWithUsers.results);
 
   return usersPromise;
 }
 
+export const getMessages = function () {
+  const messagesPromise = fetch('/messages.json').then((res) => res.json());
+
+  return messagesPromise;
+};
+
+export const getVideos = function () {
+  return fetch('/videos.json').then((res) => res.json());
+};
+
+export const getRecipes = () => {
+  const recipesPromise = fetch('https://dummyjson.com/recipes')
+    .then((res) => res.json())
+    .then(({ recipes }) => recipes);
+
+  return recipesPromise;
+};
+
+
 // /**
-//  * 
+//  *
 //  * @param {object} queryObj
 //  * @returns {string}
 //  */
-// function generateQueryString (queryObj) {
+// function generateQueryString(queryObj) {
 //   const queryEntries = Object.entries(queryObj);
 
 //   const queryPairs = queryEntries.map(([key, value]) => `${key}=${value}`);
 
-//   const query = queryPairs.join('&')
+//   const query = queryPairs.join('&');
 
 //   return `?${query}`;
 // }
@@ -51,13 +71,13 @@ export function getUsers (options) {
 //   seed: 12345,
 //   results: 10,
 //   page: 1,
-//   nat: ["ua","uk","us","jp"],
-// }
+//   nat: ['ua','uk','us','jp']
+// };
 
 // const str = generateQueryString(obj1);
 
-// console.log(str);  // '?seeds=12345&results=10&page=1'
+// console.log(str); // '?seed=12345&results=10&page=1'
 
-// const str2 = queryString.stringify(obj1, {arrayFormat: "comma"});
+// const str2 = queryString.stringify(obj1, {arrayFormat: 'comma'});
 
-// console.log(`queryString: ${str2}`)
+// console.log(`queryString: ${str2}`);
