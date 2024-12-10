@@ -4,6 +4,7 @@ import Header from './components/Header';
 import CONSTANTS from './configs';
 import MouseTracker from './components/MouseTracker';
 import FormMouseTracker from './components/FormMouseTracker';
+import MessagesLoader from './components/MessagesLoader';
 
 class App extends React.Component {
   state = {
@@ -57,6 +58,7 @@ class App extends React.Component {
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
           <Header />
+          <MessagesLoader />
           {isTrackerShown && <FormMouseTracker />}
           <button onClick={this.toggleTracker}>toggle Tracker</button>
         </ThemeContext.Provider>
