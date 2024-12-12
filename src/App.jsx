@@ -1,25 +1,38 @@
-import React from 'react';
-import { UserContext, ThemeContext } from './context';
-import CONSTANTS from './configs';
-import MessagesLoader from './components/MessagesLoader';
-import RecipeLoader from './components/RecipeLoader';
-import MouseTracker from './components/MouseTracker/customHooksVersion.jsx';
-
+import React from "react";
+import { UserContext, ThemeContext } from "./context";
+import CONSTANTS from "./configs";
+import MessagesLoader from "./components/MessagesLoader";
+import RecipeLoader from "./components/RecipeLoader";
+import MouseTracker from "./components/MouseTracker/customHooksVersion.jsx";
 
 class App extends React.Component {
   state = {
     user: {
       id: 0,
-      firstName: 'Petro',
-      lastName: 'Userenko',
+      firstName: "Petro",
+      lastName: "Userenko",
       isMale: true,
-      email: 'testuser@gmail.com',
+      email: "testuser@gmail.com",
       age: 12,
     },
     theme: CONSTANTS.THEMES.LIGHT_THEME,
     isTrackerShown: false,
-    counter: 0
+    counter: 0,
   };
+
+  componentDidMount() {
+    // console.log("componentDidMount");
+
+    // this.intervalId = setInterval(() => {
+    //   console.log("interval");
+    //   console.log(this.state.counter);
+    // }, 1000);
+  }
+
+  componentWillUnmount() {
+    // console.log("componentWillUnmount");
+    // clearInterval(this.intervalId);
+  }
 
   handleLogout = () => {
     this.setState({
@@ -31,10 +44,10 @@ class App extends React.Component {
     this.setState({
       user: {
         id: 0,
-        firstName: 'User',
-        lastName: 'Userenko',
+        firstName: "User",
+        lastName: "Userenko",
         isMale: true,
-        email: 'testuser@gmail.com',
+        email: "testuser@gmail.com",
         age: 12,
       },
     });
@@ -48,9 +61,9 @@ class App extends React.Component {
 
   toggleTracker = () => {
     this.setState({
-      isTrackerShown : !this.state.isTrackerShown
-    })
-  }
+      isTrackerShown: !this.state.isTrackerShown,
+    });
+  };
 
   handleClick = () => {
     // this.setState({
@@ -60,7 +73,7 @@ class App extends React.Component {
     // console.log(this.state.counter); // 0
 
     // this.setState({
-    //   counter: this.state.counter + 1 // 0 + 1 
+    //   counter: this.state.counter + 1 // 0 + 1
     // });
 
     // коллбек режим setState
@@ -71,28 +84,27 @@ class App extends React.Component {
 
       // повертаємо з колбеку об'єкт стану який треба докинути
       return {
-        counter: state.counter + 1 // 0 + 1
-      }
+        counter: state.counter + 1, // 0 + 1
+      };
     });
 
     // console.log(this.state.counter); // 0
 
     // this.setState({
-    //   counter: this.state.counter + 1 // 0 + 1 
+    //   counter: this.state.counter + 1 // 0 + 1
     // });
 
     this.setState((state) => {
-      console.log(this.state.counter); 
+      console.log(this.state.counter);
       console.log(state.counter); // 1
 
       return {
-        counter: state.counter + 1 // 1 + 1
-      }
+        counter: state.counter + 1, // 1 + 1
+      };
     });
 
-
     // console.log(this.state.counter); // 0
-  }
+  };
 
   render() {
     const { user, theme, isTrackerShown, counter } = this.state;
