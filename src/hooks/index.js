@@ -14,7 +14,7 @@ export function useLoadData(loadData) {
       })
       .catch((error) => setError(error))
       .finally(() => setIsLoading(false));
-  }, [ ]);
+  }, []);
 
   return {
     data,

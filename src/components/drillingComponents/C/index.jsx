@@ -1,6 +1,4 @@
-import React from "react";
 import ComponentD from "../D";
-import { UserContext, ThemeContext } from "../../../context";
 import CONSTANTS from "../../../configs";
 import { withTheme, withUser } from "../../../hocs";
 import styles from "./C.module.css"

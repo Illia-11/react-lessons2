@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import Product from "../Product";
 
 function ProductList({ products, toggleFavoriteProduct }) {
@@ -31,11 +32,24 @@ function ProductList({ products, toggleFavoriteProduct }) {
   return (
     <article>
       <h2>Products</h2>
-      <p>Sorting order: {isReverseOrder ? 'reverse' : 'straight'}</p>
+      <p>Sorting order: {isReverseOrder ? "reverse" : "straight"}</p>
       <button onClick={handleSwitchOrder}>Switch order</button>
       {isReverseOrder ? productsComponents.reverse() : productsComponents}
     </article>
   );
 }
+
+const productObject = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  isFavourite: PropTypes.bool,
+  description: PropTypes.string.isRequired,
+});
+
+ProductList.propTypes = {
+  toggleFavoriteProduct: PropTypes.func,
+  products: PropTypes.arrayOf(productObject),
+};
 
 export default ProductList;

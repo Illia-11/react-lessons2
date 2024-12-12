@@ -1,9 +1,8 @@
-import React from "react";
 import { OurContext } from "../../../context";
 // import { OurContext } from "../A";
 
-const ComponentD = (props) => {
-  const { name } = props;
+const ComponentD = () => {
+  // const { } = props;
   // return (
   //   <article
   //     style={{

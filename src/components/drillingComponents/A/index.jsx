@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { OurContext } from "../../../context";
 import ComponentB from "../B";
 

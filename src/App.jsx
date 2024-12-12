@@ -1,9 +1,7 @@
 import React from "react";
 import { UserContext, ThemeContext } from "./context";
 import CONSTANTS from "./configs";
-import MessagesLoader from "./components/MessagesLoader";
-import RecipeLoader from "./components/RecipeLoader";
-import MouseTracker from "./components/MouseTracker/customHooksVersion.jsx";
+import Avatar from "./components/Avatar/index.jsx";
 
 class App extends React.Component {
   state = {
@@ -77,7 +75,7 @@ class App extends React.Component {
     // });
 
     // коллбек режим setState
-    this.setState((state, props) => {
+    this.setState((state) => {
       // state та props у колбеці гарантовано з найсвіжішими даними
 
       console.log(state.counter); // 0
@@ -107,13 +105,11 @@ class App extends React.Component {
   };
 
   render() {
-    const { user, theme, isTrackerShown, counter } = this.state;
+    const { user, theme } = this.state;
     return (
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
-          <MouseTracker />
-          <RecipeLoader />
-          <MessagesLoader />
+          <Avatar src="test" alt="test" />
         </ThemeContext.Provider>
       </UserContext.Provider>
     );

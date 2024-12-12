@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-function FormMouseTracker(props) {
+function FormMouseTracker() {
   // комібнований стан у хуку useState має прроблеми
   const [state, setState] = useState({
-    inputText: 'dont kill me',
+    inputText: "dont kill me",
     mouseCoordinates: {
       x: 0,
       y: 0,
@@ -33,16 +32,16 @@ function FormMouseTracker(props) {
   return (
     <div
       style={{
-        minHeight: '500px',
-        maxWidth: '500px',
-        border: '1px solid black',
+        minHeight: "500px",
+        maxWidth: "500px",
+        border: "1px solid black",
       }}
       onMouseMove={handleChangeCoords}
     >
       <p>Input value is: {inputText}</p>
       <p>X coord value is: {x}</p>
       <p>Y coord is: {y}</p>
-      <input type='text' value={inputText} onChange={handleInputChange} />
+      <input type="text" value={inputText} onChange={handleInputChange} />
     </div>
   );
 }
