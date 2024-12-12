@@ -1,69 +1,62 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { UserContext, ThemeContext } from './context';
-import CONSTANTS from './configs';
 import Avatar from './components/Avatar';
 import Header from './components/Header';
 import MouseTracker from './components/MouseTracker';
+import { initialState, reducer } from './reducer';
 
 function App() {
-  const [user, setUser] = useState({
-    id: 0,
-    firstName: 'Petro',
-    lastName: 'Userenko',
-    isMale: true,
-    email: 'testuser@gmail.com',
-    age: 12,
-  });
-  const [theme, setTheme] = useState(CONSTANTS.THEMES.LIGHT_THEME);
-  const [isTrackerShown, setIsTrackerShown] = useState(false);
-  const [email, setEmail] = useState('test');
-  const [comment, setComment] = useState('');
-
-  const handleLogout = () => {
-    setUser(null);
-  };
-
-  const handleLogin = () => {
-    setUser({
-      id: 0,
-      firstName: 'User',
-      lastName: 'Userenko',
-      isMale: true,
-      email: 'testuser@gmail.com',
-      age: 12,
-    });
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleTracker = () => {
-    setIsTrackerShown(!isTrackerShown);
+    dispatch({ type: 'toggleTracker' });
   };
 
-  const changeEmail = ({target: {value}}) => {
-    setEmail(value);
-  }
+  const changeEmail = ({ target: { value } }) => {
+    const action = {
+      type: 'changeEmail',
+      email: value,
+    };
 
-  const changeComment = ({target: {value}}) => {
-    setComment(value);
-  }
+    dispatch(action);
+  };
 
-  const submitForm =  (e) => {
+  const changeComment = ({ target: { value } }) => {
+    const action = {
+      type: 'changeComment',
+      comment: value,
+    };
+
+    dispatch(action);
+  };
+
+  const submitForm = (e) => {
     e.preventDefault();
 
     alert(`ми з вами зв'яжемося.`);
-  }
+  };
 
   return (
-    <UserContext.Provider value={user}>
-      <ThemeContext.Provider value={[theme, setTheme]}>
-        <Header handleLogin={handleLogin} handleLogout={handleLogout} />
+    <UserContext.Provider value={state.user}>
+      <ThemeContext.Provider value={[state.theme, dispatch]}>
+        <Header dispatch={dispatch} />
         <Avatar src='test' alt='test' />
+        <button onClick={toggleTracker}>toggle tracker</button>
+        {state.isTrackerShown && <MouseTracker />}
         <form onSubmit={submitForm}>
-          <input type='email' name='email' value={email} onChange={changeEmail} />
-          <textarea name='comment' value={comment} onChange={changeComment} />
+          <input
+            type='email'
+            name='email'
+            value={state.email}
+            onChange={changeEmail}
+          />
+          <textarea
+            name='comment'
+            value={state.comment}
+            onChange={changeComment}
+          />
           <button>Send comment</button>
         </form>
-        <button onClick={toggleTracker}>toggle tracker</button>
-        {isTrackerShown && <MouseTracker />}
       </ThemeContext.Provider>
     </UserContext.Provider>
   );
