@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const MouseTracker = (props) => {
+const MouseTracker = () => {
   const [{ x, y }, setMouseCoordinates] = useState({
     x: 0,
     y: 0,

@@ -3,6 +3,7 @@ import { UserContext, ThemeContext } from './context';
 import CONSTANTS from './configs';
 import MessagesLoader from './components/MessagesLoader';
 import RecipeLoader from './components/RecipeLoader';
+import MouseTracker from './components/MouseTracker/customHooksVersion.jsx';
 
 
 class App extends React.Component {
@@ -98,6 +99,7 @@ class App extends React.Component {
     return (
       <UserContext.Provider value={user}>
         <ThemeContext.Provider value={[theme, this.switchTheme]}>
+          <MouseTracker />
           <RecipeLoader />
           <MessagesLoader />
         </ThemeContext.Provider>
