@@ -3,8 +3,34 @@ import cx from "classnames";
 import { ThemeContext, UserContext } from "../../context";
 import styles from "./Header.module.scss";
 import CONSTANTS from "../../configs";
+import { useMouseTracker } from "../../hooks";
 
 function Header({ dispatch }) {
+
+  const inputRef = useRef(null);
+  const containerRef = useRef(null);
+  const rendersRef = useRef(0);
+
+  console.log(inputRef.current); // значення рефа
+
+  useEffect(() => {
+    console.log(inputRef.current);
+
+    inputRef.current.focus();
+  }, [inputRef]);
+
+  useEffect(() => {
+    rendersRef.current += 1; // мутація рефа - вважається побічним ефектом, не призводить до повторного рендера. Можна робити якщо треба
+
+    // this.state.number = 5; // мутація стану - ПОМИЛКА
+  });
+
+  // useContext приймає об'єкт контексту та повертає значення яке у ньому знаходиться
+  const [theme, switchTheme] = useContext(ThemeContext);
+  const user = useContext(UserContext);
+
+  const { x, y } = useMouseTracker(containerRef);
+
   const handleLogout = () => {
     dispatch({ type: "logoutUser" });
   };
@@ -23,25 +49,6 @@ function Header({ dispatch }) {
     });
   };
 
-  const inputRef = useRef(null);
-  const numberRef = useRef(0);
-
-  console.log(inputRef.current); // значення рефа
-
-  useEffect(() => {
-    console.log(inputRef.current);
-  }, [inputRef]);
-
-  useEffect(() => {
-    numberRef.current = 10; // мутація рефа - вважається побічним ефектом, не призводить до повторного рендера. Можна робити якщо треба
-    
-    // this.state.number = 5; // мутація стану - ПОМИЛКА
-  }, []);
-
-  // useContext приймає об'єкт контексту та повертає значення яке у ньому знаходиться
-  const [theme, switchTheme] = useContext(ThemeContext);
-  const user = useContext(UserContext);
-
   const fullName = user ? `${user.firstName} ${user.lastName}`.trim() : "Guest";
 
   const logoutBtn = <button onClick={handleLogout}>Вийти</button>;
@@ -54,7 +61,7 @@ function Header({ dispatch }) {
   });
 
   return (
-    <header className={headerClasses}>
+    <header className={headerClasses} ref={containerRef}>
       <h1>Мій сайт</h1>
       <p>Привіт {fullName}</p>
       {user ? logoutBtn : loginBtn}
@@ -75,6 +82,8 @@ function Header({ dispatch }) {
       </button>
       {/* Привʼязка рефа до елементв */}
       <input ref={inputRef} />
+      <p>X: {x}</p>
+      <p>Y: {y}</p>
     </header>
   );
 }

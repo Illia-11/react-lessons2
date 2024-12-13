@@ -14,7 +14,7 @@ export function useLoadData(loadData) {
       })
       .catch((error) => setError(error))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [loadData]);
 
   return {
     data,
@@ -23,19 +23,25 @@ export function useLoadData(loadData) {
   };
 }
 
-export function useMouseTracker () {
+export function useMouseTracker (elemRef) {
   const [coords, setCoords] = useState({ x: 0, y: 0});
+
   function handleMouseMove({ clientX, clientY}) {
     setCoords({
       x: clientX,
       y: clientY
     });
   }
+
   useEffect(() => {
-    document.addEventListener('mousemove', handleMouseMove);
+    const elem = elemRef.current ? elemRef.current : document;
+
+    elem.addEventListener('mousemove', handleMouseMove);
+
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      elem.removeEventListener('mousemove', handleMouseMove);
     }
-  }, []);
+  }, [elemRef]);
+
   return coords;
 }
