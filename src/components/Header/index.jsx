@@ -3,7 +3,7 @@ import cx from "classnames";
 import { ThemeContext, UserContext } from "../../context";
 import styles from "./Header.module.scss";
 import CONSTANTS from "../../configs";
-import { useMouseTracker } from "../../hooks";
+// import { useMouseTracker } from "../../hooks";
 
 function Header({ dispatch }) {
 
@@ -29,7 +29,7 @@ function Header({ dispatch }) {
   const [theme, switchTheme] = useContext(ThemeContext);
   const user = useContext(UserContext);
 
-  const { x, y } = useMouseTracker(containerRef);
+  // const { x, y } = useMouseTracker(containerRef);
 
   const handleLogout = () => {
     dispatch({ type: "logoutUser" });
@@ -82,8 +82,8 @@ function Header({ dispatch }) {
       </button>
       {/* Привʼязка рефа до елементв */}
       <input ref={inputRef} />
-      <p>X: {x}</p>
-      <p>Y: {y}</p>
+      {/* <p>X: {x}</p>
+      <p>Y: {y}</p> */}
     </header>
   );
 }
