@@ -1,27 +1,36 @@
-import { Routes, Route } from "react-router";
-import { HomePage } from "./pages/Home";
-import { AboutPage } from "./pages/About";
-import { ContactsPage } from "./pages/Contacts";
-import { LoginPage } from "./pages/LoginPage";
-import { RegistrationPage } from "./pages/RegistrationPage";
-import { AuthLayout } from "./pages/AuthLayot";
-import { Layout } from "./pages/Layouts/Layout";
+import { Routes, Route } from 'react-router';
+import { Layout } from './pages/Layouts/Layout';
+import { AuthLayout } from './pages/AuthLayot';
+import { HomePage } from './pages/Home';
+import { AboutPage } from './pages/About';
+import { ContactsPage } from './pages/Contacts';
+import { LoginPage } from './pages/LoginPage';
+import { RegistrationPage } from './pages/RegistrationPage';
+import ProfilePage from './pages/ProfilePage';
+
 
 function App() {
   return (
     <>
+      {/* <Header /> */}
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage user={"Test User"} />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage user={'Test User'} />} />
+          <Route path='about' element={<AboutPage />} />
+          <Route path='contacts' element={<ContactsPage />} />
+          <Route path="profiles/:profileName" element={<ProfilePage />} />
+          {/* <Route path="profiles" element={<ProfileLayout />} >
+            <Route index element={<UserProfile />} />
+            <Route path=":profileId" element={<OtherProfile />} />
+          </Route> */}
         </Route>
 
-        <Route path="/abth" element={<AuthLayout />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/registraion" element={<RegistrationPage />} />
+        <Route path='/auth' element={<AuthLayout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
         </Route>
       </Routes>
+      {/* <footer>Footer</footer> */}
     </>
   );
 }
